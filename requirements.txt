@@ -1,0 +1,9 @@
+streamlit
+google-search-results
+langchain
+openai
+langchain-openai
+python-dotenv
+openpyxl
+langchain-experimental
+numexpr
