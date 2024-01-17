@@ -20,7 +20,21 @@ llm = OpenAI()
 '''
 prompt_template = PromptTemplate(
     input_variables = ["job_title", "job_type", "job_location"],
-    template = "Give me 10 {job_type} {job_title} postings in {job_location}.",
+    template = """
+    Please search for {job_title} {job_type} jobs in {job_location} and provide a list of approximately 5 unique positions. Ensure that the jobs are suitable for someone with no prior professional experience in the field. For each job, include the following details:
+
+    - Job title
+    - Company name
+    - Company location
+    - Job description
+    - Job requirements
+    - Job responsibilities
+    - Salary (if available)
+    - Application link
+
+    Use reputable job search websites and company career pages to find the listings. Avoid including internships, fellowships, or positions that require more than 1 year of professional experience.
+    If possible, provide jobs from different companies to ensure variety.
+    """,
 )
 '''
 # template = "Give me 10 {job_type} {job_title} postings in {job_location}. Then save all of the {job_type} to an Excel file calles '{job_title}.xlsx' on my computer.",
@@ -33,4 +47,17 @@ agent = initialize_agent(
     tools, llm, agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION, verbose=True
 )
 
-agent.invoke("Provide me entry level internships postings related to Software developer in India. Keep on doing it till I get 5 different job postings.")
+agent.invoke("""Please search for entry level software engineering jobs in London and provide a list of approximately 5 unique positions. Ensure that the jobs are suitable for someone with 
+    no prior professional experience in the field. For each job, include the following details:
+
+    - Job title
+    - Company name
+    - Company location
+    - Job description
+    - Job requirements
+    - Job responsibilities
+    - Salary (if available)
+    - Application link
+
+    Use reputable job search websites and company career pages to find the listings. Avoid including internships, fellowships, or positions that require more than 1 year of professional experience.
+    If possible, please ensure that each job listing is from a different company and provides unique opportunities compared to the others""")
