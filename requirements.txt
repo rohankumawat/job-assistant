@@ -8,3 +8,6 @@ openpyxl
 langchain-experimental
 numexpr
 beautifulsoup4
+google-api-python-client
+langchainhub
+fireworks-ai
